@@ -1,0 +1,54 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light px-3">
+  <div class="card border rounded-4 p-4 p-md-5 w-100" style="max-width: 400px;">
+
+    <!-- Logo -->
+    <div class="text-center mb-4">
+      <div class="logo-icon rounded-3 d-inline-flex align-items-center justify-content-center mb-3">T</div>
+      <h1 class="fs-4 fw-semibold text-dark mb-1">TOEIC Quiz</h1>
+      <p class="text-secondary small mb-0">Đăng nhập để bắt đầu luyện tập</p>
+    </div>
+
+    <!-- Form -->
+    <div class="d-flex flex-column gap-3">
+
+      <div>
+        <label class="form-label fw-medium small">Tên đăng nhập</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nhập tên đăng nhập"
+          [(ngModel)]="username"
+          (keyup.enter)="login()"
+        />
+      </div>
+
+      <div>
+        <label class="form-label fw-medium small">Mật khẩu</label>
+        <div class="input-group">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            class="form-control border-end-0"
+            placeholder="Nhập mật khẩu"
+            [(ngModel)]="password"
+            (keyup.enter)="login()"
+          />
+          <button class="btn btn-outline-secondary border-start-0" type="button"
+                  (click)="showPassword = !showPassword">
+            <i class="bi" [class.bi-eye]="!showPassword" [class.bi-eye-slash]="showPassword"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="alert alert-danger d-flex align-items-center gap-2 py-2 mb-0" *ngIf="errorMsg">
+        <i class="bi bi-exclamation-circle"></i>
+        <span class="small">{{ errorMsg }}</span>
+      </div>
+
+      <button class="btn btn-primary w-100 py-2 fw-semibold"
+              (click)="login()" [disabled]="isLoading">
+        {{ isLoading ? 'Đang xử lý...' : 'Đăng nhập' }}
+      </button>
+
+    </div>
+  </div>
+</div>
